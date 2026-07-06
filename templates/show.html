@@ -3,51 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Page</title>
+    <title>Contact Management</title>
 
     {% load static %}
-    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
-    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 
-    </head>
+    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <style>
+
+        body{
+            background:#f4f7fc;
+            font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+        }
+
+        .hero{
+
+            background:linear-gradient(135deg,#0f172a,#1d4ed8,#2563eb);
+            color:white;
+            padding:60px 0;
+
+        }
+
+        .hero h1{
+            font-size:45px;
+            font-weight:bold;
+        }
+
+        .hero p{
+            opacity:.9;
+            max-width:700px;
+        }
+
+        .stats-card{
+
+            background:white;
+            border-radius:15px;
+            padding:25px;
+            text-align:center;
+            box-shadow:0 10px 25px rgba(0,0,0,.08);
+            transition:.3s;
+
+        }
+
+        .stats-card:hover{
+
+            transform:translateY(-5px);
+
+        }
+
+        .stats-number{
+
+            font-size:32px;
+            font-weight:bold;
+            color:#2563eb;
+
+        }
+
+        .content{
+
+            margin-top:-40px;
+
+        }
+
+        .table-card{
+
+            background:white;
+            border-radius:20px;
+            padding:30px;
+            box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+        }
+
+        .table thead{
+
+            background:#2563eb;
+            color:white;
+
+        }
+
+        .table th{
+
+            border:none;
+            padding:16px;
+
+        }
+
+        .table td{
+
+            vertical-align:middle;
+            padding:18px;
+
+        }
+
+        .table tbody tr{
+
+            transition:.3s;
+
+        }
+
+        .table tbody tr:hover{
+
+            background:#f8fbff;
+
+        }
+
+        .btn-edit{
+
+            background:#2563eb;
+            color:white;
+            border:none;
+
+        }
+
+        .btn-edit:hover{
+
+            background:#1d4ed8;
+            color:white;
+
+        }
+
+        .btn-delete{
+
+            background:#dc3545;
+            color:white;
+            border:none;
+
+        }
+
+        .btn-delete:hover{
+
+            background:#bb2d3b;
+            color:white;
+
+        }
+
+        .search-box{
+
+            margin-bottom:25px;
+
+        }
+
+        .search-box input{
+
+            height:50px;
+            border-radius:12px;
+
+        }
+
+    </style>
+
+</head>
+
 <body>
 
-    <h1 class="text-center">Contact Information</h1>
+<div class="hero">
 
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis suscipit, exercitationem provident dicta similique inventore omnis molestias temporibus et eveniet, iste placeat sapiente. Quae blanditiis sunt beatae et facilis eaque?
-    Odit sit voluptas unde illo nostrum repudiandae, corrupti excepturi autem, quos omnis, asperiores fuga. Suscipit minus enim sit dolorum quas ipsam, officiis omnis natus veritatis totam? Doloribus, cumque! Ab, iure!
-    Tempore suscipit laborum, harum repellat velit corrupti quidem maiores maxime asperiores minus tenetur sed, iure voluptas magni ipsum obcaecati dolores! Non officia labore fugiat? Aperiam consectetur dolore inventore dignissimos quis!</p>
+    <div class="container">
 
-    <table class="table">
+        <h1>Contact Management Dashboard</h1>
 
-        <tr>
-            <th> Name</th>
-            <th>Email</th>
-            <th>Subject</th>
-            <th>Message</th>
-            <th>Action</th>
-        </tr>
+        <p>
+            View, organize and manage all customer contact requests from one
+            centralized dashboard.
+        </p>
 
-        {%for contact in all%}
+    </div>
 
-        <tr>
-            <td>{{contact.name}}</td>
-            <td>{{contact.email}}</td>
-            <td>{{contact.subject}}</td>
-            <td>{{contact.message}}</td>
-            <td>
+</div>
 
-                <a href=""class="btn-danger">Edit</a>
-                <a href=""class="btn btn-success">Delet</a>
-            </td>
+<div class="container content">
 
-        </tr>
-        {%endfor%}
+    <div class="row mb-4">
 
+        <div class="col-md-4 mb-3">
 
-    </table>
+            <div class="stats-card">
 
+                <div class="stats-number">{{ all|length }}</div>
 
-    
+                <h5>Total Contacts</h5>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="stats-card">
+
+                <div class="stats-number">100%</div>
+
+                <h5>Data Available</h5>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="stats-card">
+
+                <div class="stats-number">24/7</div>
+
+                <h5>System Status</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="table-card">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <h3>Customer Contacts</h3>
+
+            <input type="text"
+                   class="form-control w-25 search-box"
+                   placeholder="Search...">
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th width="170">Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for contact in all %}
+
+                    <tr>
+
+                        <td>
+                            <strong>{{ contact.name }}</strong>
+                        </td>
+
+                        <td>{{ contact.email }}</td>
+
+                        <td>{{ contact.subject }}</td>
+
+                        <td>
+
+                            {{ contact.message|truncatechars:70 }}
+
+                        </td>
+
+                        <td>
+
+                            <a href="/edit/{{contact.id}}" class="btn btn-edit btn-sm">
+                                Edit
+                            </a>
+
+                            <a href="/delete/{{contact.id}}" class="btn btn-delete btn-sm">
+                                Delete
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
 </body>
 </html>
