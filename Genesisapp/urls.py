@@ -25,6 +25,10 @@ urlpatterns = [
     path('delete/<int:id>', views.delete),
 
     path('edit/<int:id>', views.edit, ),
+
+    #Mpesa urls
+    path('payment/', views.payment, name='payment'),
+    path('callback/', views.callback, name='callback'),
     
 
     
